@@ -11,7 +11,7 @@ public class WordCloudClient {
     WordCloudApi api;
 
     public WordCloudClient() {
-        this.api = Feign.builder().decoder(new GsonDecoder()).encoder(new GsonEncoder()).target(WordCloudApi.java, "https://quickchart.io");
+        this.api = Feign.builder().decoder(new GsonDecoder()).encoder(new GsonEncoder()).target(WordCloudApi.class, "https://quickchart.io");
     }
 
     public String getWordCloudImpl(String text){
