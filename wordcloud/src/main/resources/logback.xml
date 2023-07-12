@@ -1,5 +1,3 @@
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
@@ -8,7 +6,7 @@
 
         <encoder>
 
-            <pattern> %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n </pattern>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
 
         </encoder>
 
@@ -20,13 +18,13 @@
 
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 
-            <Pattern> %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n </Pattern>
+            <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
 
         </encoder>
 
         <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
 
-            <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter" />
+            <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter"/>
 
             <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
 
@@ -38,17 +36,17 @@
 
     <logger name="logger" additivity="false" level="info">
 
-        <appender-ref ref="SAVE-TO-FILE" />
+        <appender-ref ref="SAVE-TO-FILE"/>
 
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
 
     </logger>
 
     <root level="INFO">
 
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
 
-        <appender-ref ref="SAVE-TO-FILE" />
+        <appender-ref ref="SAVE-TO-FILE"/>
 
     </root>
 
