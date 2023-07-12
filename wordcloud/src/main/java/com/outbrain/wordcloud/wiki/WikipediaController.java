@@ -26,18 +26,6 @@ import java.util.List;
 
         }
 
-        @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
-        public byte[] wordCloudTextEndpoint(@RequestParam String text) throws IOException {
-            logger.info("Called wordCloudTextEndpoint with text="+text.substring(0,(text.length()>50?50:text.length())));
-            return wordCloudClient.getWordCloud(text).body().asInputStream().readAllBytes();
-        }
-
-        @PostMapping ("wc") //http://localhost:8080/api/wiki
-        public byte[] wordCloudParamEndpoint(@RequestBody WordCloudRequest request) throws IOException {
-
-            return wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
-        }
-
         @GetMapping("wikidata") //http://localhost:8080/api/wiki?title=blabla
         public WikipediaData wikiDataEndpoint(@RequestParam String title) {
 
