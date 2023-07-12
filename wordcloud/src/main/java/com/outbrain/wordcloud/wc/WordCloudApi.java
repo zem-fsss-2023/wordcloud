@@ -14,5 +14,5 @@ public interface WordCloudApi {
 
     @RequestLine("POST /wordcloud")
     @Headers({"Content-Type: application/json"})
-    WordCloudResponse getWordCloudWithParams(WordCloudRequest wordcloudrequest);
+    Response getWordCloudWithParams(WordCloudRequest wordcloudrequest);
 }

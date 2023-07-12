@@ -25,6 +25,6 @@ public class WordCloudClientImpl implements WordCloudClient {
 
     @Override
     public Response getWordCloud(WordCloudRequest request) {
-        return this.api.getWordCloud(request);
+        return this.api.getWordCloudWithParams(request);
     }
 }

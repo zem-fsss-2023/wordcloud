@@ -24,21 +24,21 @@ import java.util.List;
         }
 
         @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
-        public byte[] wordcloudTextEndpoint(@RequestParam String text) throws IOException {
+        public byte[] wordCloudTextEndpoint(@RequestParam String text) throws IOException {
 
             return wordCloudClient.getWordCloud(text).body().asInputStream().readAllBytes();
+        }
+
+        @PostMapping ("wc") //http://localhost:8080/api/wiki
+        public byte[] wikiDataEndpoint(@RequestBody WordCloudRequest request) throws IOException {
+
+            return wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
         }
 
         @GetMapping("wiki") //http://localhost:8080/api/wiki?title=blabla
         public WikipediaData wikiDataEndpoint(@RequestParam String title) {
 
             return wikipediaRepository.findByTitle(title).get(0);
-        }
-
-        @PostMapping ("wiki") //http://localhost:8080/api/wiki
-        public byte[] wikiDataEndpoint(@RequestBody WordCloudRequest request) throws IOException {
-
-            return wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
         }
 
         @GetMapping("relations") //http://localhost:8080/api/wiki?title=blabla
