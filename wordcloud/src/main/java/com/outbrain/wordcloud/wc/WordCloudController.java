@@ -21,6 +21,7 @@ public class WordCloudController {
     private final Logger logger = LoggerFactory.getLogger(WordCloudClient.class.getName());
     private final Counter wordCloudCounter;
     private final Timer wordCloudTimer;
+    private long startTime;
 
     public WordCloudController(WikipediaRepository wikipediaRepository, WordCloudClient wordCloudClient, final MeterRegistry meterRegistry) {
         this.wikipediaRepository = wikipediaRepository;
@@ -30,9 +31,20 @@ public class WordCloudController {
 
     }
 
+    @GetMapping("combine") //http://localhost:8080/api/combine?text=blabla insert text here blabla
+    public byte[] combinedEndpoint(@RequestParam String title) throws IOException {
+        startTime = System.currentTimeMillis();
+        logger.info("Called combinedEndpoint with title=" + title);
+        wordCloudCounter.increment();
+        String text = wikipediaRepository.findByTitle(title).get(0).parsedParagraphs().toString();
+        byte[] response = wordCloudClient.getWordCloud(new WordCloudRequest(text)).body().asInputStream().readAllBytes();
+        wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
+        return response;
+    }
+
     @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
     public byte[] wordCloudTextEndpoint(@RequestParam String text) throws IOException {
-        long startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         logger.info("Called wordCloudTextEndpoint with text=" + text.substring(0, (Math.min(text.length(), 50))));
         wordCloudCounter.increment();
         byte[] response = wordCloudClient.getWordCloud(text).body().asInputStream().readAllBytes();

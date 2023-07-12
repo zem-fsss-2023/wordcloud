@@ -1,7 +1,7 @@
 package com.outbrain.wordcloud.wc.dto;
 
 public class WordCloudRequest {
-    String format = "png";
+    String format = "svg";
     Integer width = 1000;
     Integer height = 1000;
     String fontFamily = "sans-serif";
