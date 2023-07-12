@@ -1,7 +1,5 @@
 package com.outbrain.wordcloud.wc;
 
-import org.springframework.context.annotation.Bean;
-
 public class HtmlDecoder {
 
     /*@Bean
