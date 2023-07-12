@@ -1,5 +1,6 @@
 package com.outbrain.wordcloud.wc;
 
+import com.outbrain.wordcloud.wc.dto.WordCloudRequest;
 import feign.Feign;
 import feign.Response;
 import feign.gson.GsonDecoder;
@@ -20,5 +21,10 @@ public class WordCloudClientImpl implements WordCloudClient {
     @Override
     public Response getWordCloud(String text) {
         return this.api.getWordCloud(text);
+    }
+
+    @Override
+    public Response getWordCloud(WordCloudRequest request) {
+        return this.api.getWordCloud(request);
     }
 }

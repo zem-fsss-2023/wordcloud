@@ -2,12 +2,10 @@ package com.outbrain.wordcloud.wiki;
 
 import com.outbrain.wordcloud.wc.WordCloudClient;
 import com.outbrain.wordcloud.wc.WordCloudClientImpl;
+import com.outbrain.wordcloud.wc.dto.WordCloudRequest;
 import com.outbrain.wordcloud.wiki.dto.WikipediaData;
 import com.outbrain.wordcloud.wiki.dto.WikipediaRelations;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,6 +33,12 @@ import java.util.List;
         public WikipediaData wikiDataEndpoint(@RequestParam String title) {
 
             return wikipediaRepository.findByTitle(title).get(0);
+        }
+
+        @PostMapping ("wiki") //http://localhost:8080/api/wiki
+        public byte[] wikiDataEndpoint(@RequestBody WordCloudRequest request) throws IOException {
+
+            return wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
         }
 
         @GetMapping("relations") //http://localhost:8080/api/wiki?title=blabla
