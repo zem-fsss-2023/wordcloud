@@ -1,4 +1,4 @@
-package com.outbrain.wordcloud.wiki;
+package com.outbrain.wordcloud.wiki.dto;
 
 import java.util.List;
 

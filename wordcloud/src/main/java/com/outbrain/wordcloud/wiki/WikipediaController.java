@@ -1,5 +1,7 @@
 package com.outbrain.wordcloud.wiki;
 
+import com.outbrain.wordcloud.wiki.dto.WikipediaData;
+import com.outbrain.wordcloud.wiki.dto.WikipediaRelations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

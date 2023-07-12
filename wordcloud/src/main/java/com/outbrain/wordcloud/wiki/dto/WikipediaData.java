@@ -1,4 +1,4 @@
-package com.outbrain.wordcloud.wiki;
+package com.outbrain.wordcloud.wiki.dto;
 
 import jakarta.persistence.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

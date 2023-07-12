@@ -1,5 +1,6 @@
 package com.outbrain.wordcloud.wiki;
 
+import com.outbrain.wordcloud.wiki.dto.WikipediaData;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
