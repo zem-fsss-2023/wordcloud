@@ -26,13 +26,13 @@ import java.util.List;
 
         }
 
-        @GetMapping("wikidata") //http://localhost:8080/api/wiki?title=blabla
+        @GetMapping("wikidata") //http://localhost:8080/api/wikidata?title=blabla
         public WikipediaData wikiDataEndpoint(@RequestParam String title) {
 
             return wikipediaRepository.findByTitle(title).get(0);
         }
 
-        @GetMapping("relations") //http://localhost:8080/api/wiki?title=blabla
+        @GetMapping("relations") //http://localhost:8080/api/relations?title=blabla
         public WikipediaRelations wikiRelationsEndpoint(@RequestParam String title) {
 
             return wikipediaRepository.findByTitle(title).get(0).relations();
