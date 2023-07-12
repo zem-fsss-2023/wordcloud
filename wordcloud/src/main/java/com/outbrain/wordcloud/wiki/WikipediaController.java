@@ -1,5 +1,7 @@
 package com.outbrain.wordcloud.wiki;
 
+import com.outbrain.wordcloud.wc.WordCloudClient;
+import com.outbrain.wordcloud.wc.WordCloudClientImpl;
 import com.outbrain.wordcloud.wiki.dto.WikipediaData;
 import com.outbrain.wordcloud.wiki.dto.WikipediaRelations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+    @RestController
     @RequestMapping("api")
     public class WikipediaController {
 
         private WikipediaRepository wikipediaRepository;
+        private WordCloudClient wordCloudClient;
 
-        public WikipediaController(WikipediaRepository wikipediaRepository) {
+        public WikipediaController(WikipediaRepository wikipediaRepository, WordCloudClient wordCloudClient) {
             this.wikipediaRepository = wikipediaRepository;
+            this.wordCloudClient = wordCloudClient;
+
+        }
+
+        @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
+        public String wordcloudTextEndpoint(@RequestParam String text) {
+
+            return wordCloudClient.getWordCloud(text);
         }
 
         @GetMapping("wiki") //http://localhost:8080/api/wiki?title=blabla

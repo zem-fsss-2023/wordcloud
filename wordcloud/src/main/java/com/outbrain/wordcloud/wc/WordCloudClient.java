@@ -4,4 +4,5 @@ public interface WordCloudClient {
     //WordCloudApi api;
 
     String getWordCloud(String text);
+
 }
