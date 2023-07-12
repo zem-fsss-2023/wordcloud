@@ -1,6 +1,7 @@
 package com.outbrain.wordcloud.wc;
 
 import feign.Feign;
+import feign.Response;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class WordCloudClientImpl implements WordCloudClient {
     }
 
     @Override
-    public String getWordCloud(String text) {
+    public Response getWordCloud(String text) {
         return this.api.getWordCloud(text);
     }
 }

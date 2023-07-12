@@ -1,8 +1,10 @@
 package com.outbrain.wordcloud.wc;
 
+import feign.Response;
+
 public interface WordCloudClient {
     //WordCloudApi api;
 
-    String getWordCloud(String text);
+    Response getWordCloud(String text);
 
 }

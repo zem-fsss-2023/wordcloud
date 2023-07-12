@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
     @RestController
@@ -25,9 +26,9 @@ import java.util.List;
         }
 
         @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
-        public String wordcloudTextEndpoint(@RequestParam String text) {
+        public byte[] wordcloudTextEndpoint(@RequestParam String text) throws IOException {
 
-            return wordCloudClient.getWordCloud(text);
+            return wordCloudClient.getWordCloud(text).body().asInputStream().readAllBytes();
         }
 
         @GetMapping("wiki") //http://localhost:8080/api/wiki?title=blabla
