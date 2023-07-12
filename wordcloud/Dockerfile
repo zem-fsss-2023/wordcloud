@@ -11,7 +11,7 @@ RUN apt-get install -y 	 ./filebeat-8.8.1-amd64.deb
 
 COPY filebeat.yml /etc/filebeat/filebeat.yml
 
-COPY ./ /app
+COPY .. /app
 RUN cd app && mvn clean package -DskipTests
 
-ENTRYPOINT service filebeat start && java -jar -Dspring.profiles.active=prod /app/target/summer-school.jar
+ENTRYPOINT service filebeat start && java -jar -Dspring.profiles.active=prod /app/target/wordcloud.jar
