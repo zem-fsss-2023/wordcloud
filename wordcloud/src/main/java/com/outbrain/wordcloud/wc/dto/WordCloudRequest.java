@@ -2,11 +2,23 @@ package com.outbrain.wordcloud.wc.dto;
 
 public class WordCloudRequest {
     String format = "svg";
+    String loadGoogleFonts = "";
     Integer width = 1000;
     Integer height = 1000;
+    String backgroundColor = "transparent";
     String fontFamily = "sans-serif";
-    Integer fontScale = 15;
+    String fontWeight = "normal";
+    Integer fontScale = 25;
     String scale = "linear";
+    Integer padding = 1;
+    Integer rotation = 20;
+    Integer maxNumWords = 200;
+    Integer minWordLength = 3;
+    String case_UL = "upper";   // upper, lower or none
+    String removeStopwords = "true";
+    String cleanWords = "true";
+    String language = "en";
+    String useWordList = "false";
     String text = "Tuki je neki tekst, string blablablabla in tako naprej. Pogledava samo če dela.";
 
     public WordCloudRequest() {
@@ -16,15 +28,24 @@ public class WordCloudRequest {
         this.text = text;
     }
 
-    public WordCloudRequest(String format, Integer width, Integer height, String fontFamily, Integer fontScale,
+    public WordCloudRequest(String format, Integer width, Integer height, String fontFamily, String loadGoogleFonts, Integer fontScale,
             String scale, String text) {
         this.format = format;
         this.width = width;
         this.height = height;
         this.fontFamily = fontFamily;
+        this.loadGoogleFonts = loadGoogleFonts;
         this.fontScale = fontScale;
         this.scale = scale;
         this.text = text;
+    }
+
+    public String getLoadGoogleFonts() {
+        return loadGoogleFonts;
+    }
+
+    public void setLoadGoogleFonts(String loadGoogleFonts) {
+        this.loadGoogleFonts = loadGoogleFonts;
     }
 
     public String getFormat() {
