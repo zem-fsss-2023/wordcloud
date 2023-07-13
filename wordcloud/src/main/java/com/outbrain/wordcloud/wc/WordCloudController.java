@@ -32,12 +32,24 @@ public class WordCloudController {
 
     }
 
-    @GetMapping("words") //http://localhost:8080/api/combine?text=blabla insert text here blabla
-    public byte[] combinedEndpoint(@RequestParam String title) throws IOException {
+    @GetMapping("wikiwords") //http://localhost:8080/api/wikiwords?title=blabla insert text here blabla
+    public byte[] combinedGetEndpoint(@RequestParam String title) throws IOException {
         startTime = System.currentTimeMillis();
-        logger.info("Called combinedEndpoint with title=" + title);
+        logger.info("Called combinedGetEndpoint with title=" + title);
         wordCloudCounter.increment();
         String text = wikipediaRepository.findByTitle(title).get(0).parsedParagraphs().toString();
+        byte[] response = wordCloudClient.getWordCloud(new WordCloudRequest(text)).body().asInputStream().readAllBytes();
+        wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
+        return response;
+    }
+
+    @PostMapping("wikiwords") //http://localhost:8080/api/wikiwords
+    public byte[] combinedPostEndpoint(@RequestBody WordCloudRequest request) throws IOException {
+        startTime = System.currentTimeMillis();
+
+        logger.info("Called combinedPostEndpoint with title=" + request.getText());
+        wordCloudCounter.increment();
+        String text = wikipediaRepository.findByTitle(request.getText()).get(0).parsedParagraphs().toString();
         byte[] response = wordCloudClient.getWordCloud(new WordCloudRequest(text)).body().asInputStream().readAllBytes();
         wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
         return response;
