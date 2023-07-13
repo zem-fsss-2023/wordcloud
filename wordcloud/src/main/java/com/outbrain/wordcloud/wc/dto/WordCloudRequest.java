@@ -40,6 +40,28 @@ public class WordCloudRequest {
         this.text = text;
     }
 
+    public WordCloudRequest(String format, String loadGoogleFonts, Integer width, Integer height, String backgroundColor, String fontFamily, String fontWeight, Integer fontScale, String scale, Integer padding, Integer rotation, Integer maxNumWords, Integer minWordLength, String case_UL, String removeStopwords, String cleanWords, String language, String useWordList, String text) {
+        this.format = format;
+        this.loadGoogleFonts = loadGoogleFonts;
+        this.width = width;
+        this.height = height;
+        this.backgroundColor = backgroundColor;
+        this.fontFamily = fontFamily;
+        this.fontWeight = fontWeight;
+        this.fontScale = fontScale;
+        this.scale = scale;
+        this.padding = padding;
+        this.rotation = rotation;
+        this.maxNumWords = maxNumWords;
+        this.minWordLength = minWordLength;
+        this.case_UL = case_UL;
+        this.removeStopwords = removeStopwords;
+        this.cleanWords = cleanWords;
+        this.language = language;
+        this.useWordList = useWordList;
+        this.text = text;
+    }
+
     public String getLoadGoogleFonts() {
         return loadGoogleFonts;
     }

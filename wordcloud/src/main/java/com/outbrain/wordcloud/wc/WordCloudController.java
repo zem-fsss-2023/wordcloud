@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -31,7 +32,7 @@ public class WordCloudController {
 
     }
 
-    @GetMapping("combine") //http://localhost:8080/api/combine?text=blabla insert text here blabla
+    @GetMapping("words") //http://localhost:8080/api/combine?text=blabla insert text here blabla
     public byte[] combinedEndpoint(@RequestParam String title) throws IOException {
         startTime = System.currentTimeMillis();
         logger.info("Called combinedEndpoint with title=" + title);
@@ -43,9 +44,9 @@ public class WordCloudController {
     }
 
     @GetMapping("wc") //http://localhost:8080/api/wc?text=blabla insert text here blabla
-    public byte[] wordCloudTextEndpoint(@RequestParam String text) throws IOException {
+    public byte[] wordCloudGetEndpoint(@RequestParam String text) throws IOException {
         startTime = System.currentTimeMillis();
-        logger.info("Called wordCloudTextEndpoint with text=" + text.substring(0, (Math.min(text.length(), 50))));
+        logger.info("Called wordCloudGetEndpoint with text=" + text.substring(0, (Math.min(text.length(), 50))));
         wordCloudCounter.increment();
         byte[] response = wordCloudClient.getWordCloud(text).body().asInputStream().readAllBytes();
         wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
@@ -53,7 +54,7 @@ public class WordCloudController {
     }
 
     @PostMapping("wc") //http://localhost:8080/api/wiki
-    public byte[] wordCloudParamEndpoint(@RequestBody WordCloudRequest request) throws IOException {
+    public byte[] wordCloudPostEndpoint(@RequestBody WordCloudRequest request) throws IOException {
 
         return wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
     }
