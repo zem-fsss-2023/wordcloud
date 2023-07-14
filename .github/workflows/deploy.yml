@@ -29,8 +29,8 @@ jobs:
         with:
           push: true
           tags: zemregistry.azurecr.io/zemregistry/wordcloud-backend:${{ github.sha }}
-          file: ./Dockerfile
-          context: ./
+          file: ./wordcloud/Dockerfile
+          context: ./wordcloud/
 
   deploy:
     runs-on: ubuntu-latest
