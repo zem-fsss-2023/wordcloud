@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @CrossOrigin(origins = "*")
@@ -47,12 +46,19 @@ public class WordCloudController {
     @PostMapping("wikiwords") //http://localhost:8080/api/wikiwords
     public byte[] combinedPostEndpoint(@RequestBody WordCloudRequest request) throws IOException {
         startTime = System.currentTimeMillis();
+        String title = request.getText();
 
-        logger.info("Called combinedPostEndpoint with title=" + request.getText());
+        logger.info("Called combinedPostEndpoint with title=" + title);
         wordCloudCounter.increment();
-        String text = wikipediaRepository.findByTitle(request.getText()).get(0).parsedParagraphs().toString();
-        request.setText(text);
-        //System.out.println(request);
+        try {
+            request.setText(wikipediaRepository.findByTitle(title).get(0).parsedParagraphs().toString());
+        } catch (IndexOutOfBoundsException|NullPointerException e) {
+            logger.error("Wiki call failed :("+e);
+            request.setText("Wikipedia article not found! 😔 😅 😢 😔 😢 😢 Wikipedia Wikipedia ERROR ERROR");
+            request.setMinWordLength(1);
+            request.setRotation(0);
+        }
+
         byte[] response = wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
         wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
         return response;
