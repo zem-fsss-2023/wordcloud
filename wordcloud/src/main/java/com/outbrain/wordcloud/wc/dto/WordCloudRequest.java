@@ -25,7 +25,7 @@ public class WordCloudRequest {
     String language = "en";
     String useWordList = "false";
     String text = "Tuki je neki tekst, string blablablabla in tako naprej. Pogledava samo če dela.";
-    //String colors = '["#F277A4","#D966B1","#84498C","#021F59","#011640"]';
+    String colors = "[\"0096D2\",\"#4C2882\",\"#00ECB7\",\"#E72199\",\"#8769D6\"]";
 
     public WordCloudRequest() {
     }
@@ -66,16 +66,16 @@ public class WordCloudRequest {
         this.language = language;
         this.useWordList = useWordList;
         this.text = text;
-        //this.colors = colors;
+        this.colors = colors;
     }
 
-    /*public String getColors() {
+    public String getColors() {
         return colors;
     }
 
     public void setColors(String colors) {
         this.colors = colors;
-    }*/
+    }
 
     public String getLoadGoogleFonts() {
         return loadGoogleFonts;
