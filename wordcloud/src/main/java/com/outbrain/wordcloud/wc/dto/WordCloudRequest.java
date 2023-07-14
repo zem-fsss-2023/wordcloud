@@ -1,5 +1,8 @@
 package com.outbrain.wordcloud.wc.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+
 public class WordCloudRequest {
     String format = "svg";
     String loadGoogleFonts = "";
@@ -14,12 +17,15 @@ public class WordCloudRequest {
     Integer rotation = 20;
     Integer maxNumWords = 200;
     Integer minWordLength = 3;
-    String case_UL = "upper";   // upper, lower or none
+    @SerializedName("case")
+    @JsonProperty("case")
+    String _case = "upper";   // upper, lower or none
     String removeStopwords = "true";
     String cleanWords = "true";
     String language = "en";
     String useWordList = "false";
     String text = "Tuki je neki tekst, string blablablabla in tako naprej. Pogledava samo če dela.";
+    //String colors = '["#F277A4","#D966B1","#84498C","#021F59","#011640"]';
 
     public WordCloudRequest() {
     }
@@ -40,7 +46,7 @@ public class WordCloudRequest {
         this.text = text;
     }
 
-    public WordCloudRequest(String format, String loadGoogleFonts, Integer width, Integer height, String backgroundColor, String fontFamily, String fontWeight, Integer fontScale, String scale, Integer padding, Integer rotation, Integer maxNumWords, Integer minWordLength, String case_UL, String removeStopwords, String cleanWords, String language, String useWordList, String text) {
+    public WordCloudRequest(String format, String loadGoogleFonts, Integer width, Integer height, String backgroundColor, String fontFamily, String fontWeight, Integer fontScale, String scale, Integer padding, Integer rotation, Integer maxNumWords, Integer minWordLength, String _case, String removeStopwords, String cleanWords, String language, String useWordList, String text, String colors) {
         this.format = format;
         this.loadGoogleFonts = loadGoogleFonts;
         this.width = width;
@@ -54,13 +60,22 @@ public class WordCloudRequest {
         this.rotation = rotation;
         this.maxNumWords = maxNumWords;
         this.minWordLength = minWordLength;
-        this.case_UL = case_UL;
+        this._case = _case;
         this.removeStopwords = removeStopwords;
         this.cleanWords = cleanWords;
         this.language = language;
         this.useWordList = useWordList;
         this.text = text;
+        //this.colors = colors;
     }
+
+    /*public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }*/
 
     public String getLoadGoogleFonts() {
         return loadGoogleFonts;
@@ -124,5 +139,93 @@ public class WordCloudRequest {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getFontWeight() {
+        return fontWeight;
+    }
+
+    public void setFontWeight(String fontWeight) {
+        this.fontWeight = fontWeight;
+    }
+
+    public Integer getPadding() {
+        return padding;
+    }
+
+    public void setPadding(Integer padding) {
+        this.padding = padding;
+    }
+
+    public Integer getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Integer rotation) {
+        this.rotation = rotation;
+    }
+
+    public Integer getMaxNumWords() {
+        return maxNumWords;
+    }
+
+    public void setMaxNumWords(Integer maxNumWords) {
+        this.maxNumWords = maxNumWords;
+    }
+
+    public Integer getMinWordLength() {
+        return minWordLength;
+    }
+
+    public void setMinWordLength(Integer minWordLength) {
+        this.minWordLength = minWordLength;
+    }
+
+    public String get_case() {
+        return _case;
+    }
+
+    public void set_case(String _case) {
+        this._case = _case;
+    }
+
+    public String getRemoveStopwords() {
+        return removeStopwords;
+    }
+
+    public void setRemoveStopwords(String removeStopwords) {
+        this.removeStopwords = removeStopwords;
+    }
+
+    public String getCleanWords() {
+        return cleanWords;
+    }
+
+    public void setCleanWords(String cleanWords) {
+        this.cleanWords = cleanWords;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getUseWordList() {
+        return useWordList;
+    }
+
+    public void setUseWordList(String useWordList) {
+        this.useWordList = useWordList;
     }
 }

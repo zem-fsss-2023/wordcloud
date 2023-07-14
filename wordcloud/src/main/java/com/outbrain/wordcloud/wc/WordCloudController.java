@@ -51,7 +51,9 @@ public class WordCloudController {
         logger.info("Called combinedPostEndpoint with title=" + request.getText());
         wordCloudCounter.increment();
         String text = wikipediaRepository.findByTitle(request.getText()).get(0).parsedParagraphs().toString();
-        byte[] response = wordCloudClient.getWordCloud(new WordCloudRequest(text)).body().asInputStream().readAllBytes();
+        request.setText(text);
+        //System.out.println(request);
+        byte[] response = wordCloudClient.getWordCloud(request).body().asInputStream().readAllBytes();
         wordCloudTimer.record(System.currentTimeMillis()-startTime, TimeUnit.MILLISECONDS);
         return response;
     }
